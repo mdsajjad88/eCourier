@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use App\Models\ParcelInfo;
 
-class homeController extends Controller
+class HomeController extends Controller
 {
-    public function index(){
-        return view('frontend.home');
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $user = auth()->user()->id;
+        $allpercel = ParcelInfo::where('user_id', $user)->count();
+
+        $pendingbalance = ParcelInfo::sum('cod');
+        
+        return view('home', compact('pendingbalance'));
     }
 }

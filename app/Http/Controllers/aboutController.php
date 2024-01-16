@@ -9,4 +9,7 @@ class aboutController extends Controller
     public function index(){
         return view('frontend.about');
     }
+    public function home(){
+        return view('frontend.home');
+    }
 }
