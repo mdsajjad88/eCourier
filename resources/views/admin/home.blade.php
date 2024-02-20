@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card bg-primary text-light">
+                        <div class="card bg-success text-light">
                             <a href="{{url('profitdetails')}}" class="nav-link">
                             <div class="card-body">
                                 <h5 class="card-title">Our Total Profit</h5>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 ">
-                        <div class="card bg-primary text-light">
+                        <div class="card bg-success text-light">
                             <a href="{{url('approval')}}" class="nav-link">
                             <div class="card-body">
                                 <h5 class="card-title">Waiting Approval</h5>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card bg-primary text-light">
+                        <div class="card bg-success text-light">
                             <a href="{{url('showpayriqu')}}" class="nav-link">
                             <div class="card-body">
                                 <h5 class="card-title">Payment Riquest</h5>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card bg-primary text-light">
+                        <div class="card bg-success text-light">
                            <a href="{{url('allparcel')}}" class="nav-link">
                             <div class="card-body">
                                 <h5 class="card-title">Total Parcel</h5>
@@ -89,8 +89,8 @@
                 </div>
                  <div class="row mt-2">
                     <div class="col-md-3">
-                        <a href="{{url('pendingByAdmin')}}">
-                        <div class="card bg-primary text-light">
+                        <a href="{{url('pendingByAdmin')}}" class="nav-link">
+                        <div class="card bg-success text-light">
                             
                             <div class="card-body">
                                 @php
@@ -106,7 +106,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 ">
-                        <div class="card bg-primary text-light">
+                        <div class="card bg-success text-light">
                         <a href="{{url('alldelivery')}}" class="nav-link">
                             <div class="card-body">
                                 @php 
@@ -121,24 +121,29 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card bg-dark text-light">
-                           
+                        <div class="card bg-success text-light">
+                           <a href="{{url('company/allmarchent')}}" class="nav-link">
                             <div class="card-body">
-                                <h5 class="card-title">Nothing Riquest</h5>
-                               
-                                <h6 class="card-subtitle mb-2"> 000 </h6>
+                                <h5 class="card-title">All Marchent </h5>
+                               @php
+                               $marchent = DB::table('marchents')->where('status', 'Marchent')->count();
+                               @endphp
+                                <h6 class="card-subtitle mb-2"> {{$marchent}} </h6>
                             </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card bg-dark text-light">
-                           
+                        <div class="card bg-success text-light">
+                           <a href="{{url('balance/add/request')}}" class="nav-link">
                             <div class="card-body">
-                                <h5 class="card-title">Khujteci kicu akta </h5>
-                                <h6 class="card-subtitle mb-2">0000 </h6>
+                                <h5 class="card-title">Add Balance Request</h5>
+                                @php 
+                                $balance = DB::table('add_balances')->where('pay_status', 'pending')->count();
+                                @endphp 
+                                <h6 class="card-subtitle mb-2">{{$balance}} </h6>
                             </div>
-                          
+                            </a>
                         </div>
                     </div>
                 </div> 

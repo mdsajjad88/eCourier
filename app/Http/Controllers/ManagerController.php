@@ -159,7 +159,7 @@ class ManagerController extends Controller
         $track->description = " Parcel Entry By ";
         $track->creat_by = $dis.' Hub Manager';
         $track->save();       
-    Session::flash('success', 'Successfully added Your Parcel');
+    Session::flash('success', 'Successfully added Your Parcel. Parcel ID is '.$parcel);
     return redirect()->back();
    }
    public function allpendingshow(){
@@ -210,5 +210,10 @@ class ManagerController extends Controller
     $branch = Auth::guard('manager')->user()->branch_name;
     $parcels = ParcelInfo::where('delivared_branch', $branch)->get();
     return view('manager.alldeliveryhis', compact('parcels'));
+  }
+  public function allmarchent(){
+    $branch = Auth::guard('manager')->user()->branch_name;
+    $marchents = Marchent::where('district', $branch)->where('status', 'Marchent')->get();
+    return view('manager.allmarchent', compact('marchents'));
   }
 }

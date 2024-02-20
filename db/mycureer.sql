@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2024 at 07:20 AM
+-- Generation Time: Jan 24, 2024 at 04:26 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- Database: `mycureer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_balances`
+--
+
+CREATE TABLE `add_balances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tnx_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `our_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_tnx` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parcel_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `add_balances`
+--
+
+INSERT INTO `add_balances` (`id`, `user_id`, `tnx_code`, `our_account`, `pay_method`, `pay_account`, `pay_date`, `pay_tnx`, `pay_status`, `created_at`, `updated_at`, `amount`, `parcel_id`) VALUES
+(1, '1', 'xV7ow2HI', '01767295333', 'Bkash', '01787858745', '2024-01-14', 'asdfasdf', 'added_account', '2024-01-21 09:53:00', '2024-01-21 11:29:00', '500', ''),
+(5, '1', 'lOUKbpjO', '01767295333', 'Rocket', '01548765264', '2024-01-15', '545851251', 'added_account', '2024-01-21 11:35:33', '2024-01-21 11:35:45', '600', ''),
+(7, '1', 'Fl5qkkiR', '01767295333', 'Bkash', '0158754521', '2024-01-15', '458fasdfasd', 'added_account', '2024-01-24 04:37:19', '2024-01-24 04:37:50', '950', ''),
+(8, '2', '1cFs6eD1', '01767295333', 'Bkash', '01548754875', '2024-01-15', 'asdfasdf', 'added_account', '2024-01-24 13:24:24', '2024-01-24 13:25:21', '600', ''),
+(9, '2', 'hdrTadI5', '01767295333', 'Bkash', '01548754125', '2024-01-17', 'asdfaerwe', 'added_account', '2024-01-24 13:40:05', '2024-01-24 13:43:14', '320', '23');
 
 -- --------------------------------------------------------
 
@@ -164,9 +197,10 @@ CREATE TABLE `marchents` (
 --
 
 INSERT INTO `marchents` (`id`, `user_id`, `primary_num`, `local_address`, `upozilla`, `district`, `division`, `created_at`, `updated_at`, `status`, `current_balance`) VALUES
-(1, '1', '01767295333', 'Paglapir Rangpur', 'Rangpur Sadar', 'Rangpur', 'Rangpur', '2024-01-11 03:58:51', '2024-01-15 06:35:15', 'Marchent', '0'),
-(2, '2', '01580452569', 'Sylhet, Sunamganj', 'Sylhet sadar', 'Sylhet', 'Sylhet', '2024-01-11 06:54:52', '2024-01-11 06:55:17', 'Marchent', NULL),
-(3, '3', '01916910514', 'Khulna Sadar', 'Khulna', 'Khulna', 'Khulna', '2024-01-11 08:32:33', '2024-01-11 08:34:35', 'Marchent', NULL);
+(1, '1', '01767295333', 'Paglapir Rangpur', 'Rangpur Sadar', 'Rangpur', 'Rangpur', '2024-01-11 03:58:51', '2024-01-24 14:10:44', 'Marchent', '9144'),
+(2, '2', '01580452569', 'Sylhet, Sunamganj', 'Sylhet sadar', 'Sylhet', 'Sylhet', '2024-01-11 06:54:52', '2024-01-24 14:07:14', 'Marchent', '0'),
+(3, '3', '01916910514', 'Khulna Sadar', 'Khulna', 'Khulna', 'Khulna', '2024-01-11 08:32:33', '2024-01-11 08:34:35', 'Marchent', NULL),
+(4, '4', '01548756985', 'Paglapir Rangpur', 'Rangpur Sadar', 'Rangpur', 'Rangpur', '2024-01-24 11:31:13', '2024-01-24 11:31:13', 'pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,7 +250,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2024_01_07_154245_add_transaction_to_parcel_infos_table', 1),
 (30, '2024_01_07_170001_create_transactions_table', 1),
 (31, '2024_01_07_171420_add_status_to_transactions_table', 1),
-(32, '2024_01_11_101826_add_pickup_to_pickups_table', 2);
+(32, '2024_01_11_101826_add_pickup_to_pickups_table', 2),
+(33, '2024_01_21_103223_add_add_tnx_to_parcel_infos_table', 3),
+(34, '2024_01_21_110844_add_new_tnx_to_parcel_infos_table', 4),
+(35, '2024_01_21_153638_create_add_balances_table', 5),
+(36, '2024_01_21_172018_add_balance_to_add_balances_table', 6),
+(37, '2024_01_24_193355_add_parcel_id_to_add_balances_table', 7);
 
 -- --------------------------------------------------------
 
@@ -286,30 +325,44 @@ CREATE TABLE `parcel_infos` (
   `paid_cod` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cod_oneparcent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `transaction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `transaction` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `our_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_tnx` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `parcel_infos`
 --
 
-INSERT INTO `parcel_infos` (`id`, `user_id`, `category`, `type`, `contact`, `name`, `address`, `district`, `policestation`, `cod`, `note`, `weight`, `exchenge`, `status`, `created_at`, `updated_at`, `entry_by`, `user_district`, `cod_status`, `receiving_add`, `delivery_rider`, `delivared_branch`, `paid_cod`, `delivery_charge`, `cod_oneparcent`, `transaction`) VALUES
-(1, '1', 'express', 'point', '01245632563', 'Akash', 'Chittagong', 'Chittagong', 'Chittagong', '650', NULL, '6', NULL, 'delivared', '2024-01-11 04:31:35', '2024-01-11 04:49:26', 'marchent', 'Rangpur', 'paid', 'Chittagong', '2', 'Chittagong', '424', '220', '6', 'epcp5RKm'),
-(2, '1', 'regular', 'home', '015551455444', 'Rustom', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet', '903', NULL, '9', NULL, 'delivared', '2024-01-11 06:15:38', '2024-01-15 06:35:15', 'manager', 'Rangpur', 'payment_request', 'Sylhet', '7', 'Sylhet', '614', '280', '9', 'hW7LG2sB'),
-(3, '1', 'regular', 'home', '01547896523', 'Rokeya', 'Sylhet, sunamganj', 'Sylhet', 'Sylhet sadar', '609', NULL, '6', NULL, 'delivared', '2024-01-11 06:29:36', '2024-01-15 06:35:15', 'marchent', 'Rangpur', 'payment_request', 'Sylhet', '8', 'Sylhet', '373', '230', '6', 'hW7LG2sB'),
-(4, '1', 'express', 'point', '01458965874', 'Ratul', 'Mongla, Khulna', 'Khulna', 'Khulna Sadar', '327', NULL, '7', NULL, 'pending', '2024-01-11 06:30:45', '2024-01-11 06:30:45', 'marchent', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, NULL, '3', NULL),
-(5, '1', 'express', 'point', '01695845969', 'Kaysar', 'Bagerhat, Khulna', 'Khulna', 'Khulna Sadar', '960', NULL, '5', NULL, 'pending', '2024-01-11 06:31:48', '2024-01-11 06:31:48', 'marchent', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, NULL, '9', NULL),
-(6, '2', 'regular', 'home', '01478523695', 'Rahmat Shah', 'Khulna Sadar', 'Khulna', 'Khulna', '9650', NULL, '3', NULL, 'Approved', '2024-01-11 06:56:26', '2024-01-11 10:53:41', 'marchent', 'Sylhet', 'pending', NULL, NULL, NULL, NULL, NULL, '96', NULL),
-(7, '2', 'pickdrop', 'home', '01965874523', 'Jui', 'Chittagong', 'Chittagong', 'Chittagong', '920', 'take it Carefully', '2', NULL, 'Approved', '2024-01-11 06:58:06', '2024-01-11 10:53:43', 'marchent', 'Sylhet', 'pending', NULL, NULL, NULL, NULL, NULL, '9', NULL),
-(8, '2', 'express', 'home', '01547859652', 'Sabbir', 'Chandpur, Khulna', 'Khulna', 'Khulna', '25500', NULL, '1', NULL, 'received', '2024-01-11 06:58:58', '2024-01-11 11:00:34', 'marchent', 'Sylhet', 'pending', 'Warehouse', NULL, NULL, NULL, NULL, '255', NULL),
-(9, '2', 'pickdrop', 'point', '0154785968', 'Shihab Ahmed', 'keraniganj Dhaka', 'Dhaka', 'Dhaka', '1350', NULL, '1.5', NULL, 'sending', '2024-01-11 07:00:11', '2024-01-11 11:00:05', 'marchent', 'Sylhet', 'pending', 'Chittagong', NULL, NULL, NULL, NULL, '13', NULL),
-(10, '2', 'regular', 'home', '01659555548', 'Misqat', 'Paglapir Rangpur', 'Rangpur', 'Rangpur Sadar', '640', NULL, '3', NULL, 'pending', '2024-01-11 07:05:20', '2024-01-11 07:05:20', 'marchent', 'Sylhet', 'pending', NULL, NULL, NULL, NULL, NULL, '6', NULL),
-(11, '3', 'express', 'point', '015487521548', 'Shakib', 'Paglapir Rangpur', 'Rangpur', 'Rangpur Sadar', '320', NULL, '1', NULL, 'pending', '2024-01-11 08:51:59', '2024-01-11 08:51:59', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, NULL, '3', NULL),
-(12, '3', 'regular', 'home', '01987456254', 'Rakib', 'Chittagong', 'Chittagong', 'Chittagong', '920', NULL, '3', NULL, 'pending', '2024-01-11 08:53:35', '2024-01-11 08:53:35', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, NULL, '9', NULL),
-(13, '3', 'regular', 'home', '01362541548', 'Shofiqul', 'Sunamganj, Sylhet', 'Sylhet', 'Sylhet Sadar', '690', NULL, '2', NULL, 'pending', '2024-01-11 08:55:33', '2024-01-11 08:55:33', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, NULL, '6', NULL),
-(14, '3', 'regular', 'home', '018452145875', 'Keramot', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet Sadar', '720', NULL, '3', NULL, 'pending', '2024-01-11 08:56:50', '2024-01-11 08:56:50', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, NULL, '7', NULL),
-(15, '1', 'regular', 'home', '01548754125', 'rocky', 'kustia', 'Kustia', 'Kustia Sadar', '900', NULL, '6', NULL, 'pending', '2024-01-13 05:32:08', '2024-01-13 05:32:08', 'manager', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, '230', NULL, NULL),
-(16, '1', 'regular', 'home', '016655555151', 'Tufan', 'Purana Paltan', 'Dhaka', 'Dhaka Sadar', '640', NULL, '5', NULL, 'delivared', '2024-01-13 05:36:17', '2024-01-15 06:35:15', 'manager', 'Rangpur', 'payment_request', 'Dhaka', '13', 'Dhaka', '424', '210', '6', 'hW7LG2sB');
+INSERT INTO `parcel_infos` (`id`, `user_id`, `category`, `type`, `contact`, `name`, `address`, `district`, `policestation`, `cod`, `note`, `weight`, `exchenge`, `status`, `created_at`, `updated_at`, `entry_by`, `user_district`, `cod_status`, `receiving_add`, `delivery_rider`, `delivared_branch`, `paid_cod`, `delivery_charge`, `cod_oneparcent`, `transaction`, `our_account`, `pay_method`, `pay_account`, `pay_date`, `pay_tnx`, `pay_status`, `amount`) VALUES
+(1, '1', 'express', 'point', '01245632563', 'Akash', 'Chittagong', 'Chittagong', 'Chittagong', '650', NULL, '6', NULL, 'delivared', '2024-01-11 04:31:35', '2024-01-11 04:49:26', 'marchent', 'Rangpur', 'paid', 'Chittagong', '2', 'Chittagong', '424', '220', '6', 'epcp5RKm', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '1', 'regular', 'home', '015551455444', 'Rustom', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet', '903', NULL, '9', NULL, 'delivared', '2024-01-11 06:15:38', '2024-01-15 06:35:15', 'manager', 'Rangpur', 'payment_request', 'Sylhet', '7', 'Sylhet', '614', '280', '9', 'hW7LG2sB', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '1', 'regular', 'home', '01547896523', 'Rokeya', 'Sylhet, sunamganj', 'Sylhet', 'Sylhet sadar', '609', 'nothing', '6', NULL, 'delivared', '2024-01-11 06:29:36', '2024-01-16 16:00:17', 'marchent', 'Rangpur', 'payment_request', 'Sylhet', '8', 'Sylhet', '373', '230', '6', 'hW7LG2sB', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '1', 'express', 'point', '01458965874', 'Ratul', 'Mongla, Khulna', 'Khulna', 'Khulna Sadar', '327', 'Delivery Charge Added', '7', NULL, 'Approved', '2024-01-11 06:30:45', '2024-01-24 12:50:15', 'marchent', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, '250', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '1', 'express', 'point', '01695845969', 'Kaysar', 'Bagerhat, Khulna', 'Khulna', 'Khulna Sadar', '9600', 'COD Change', '5', NULL, 'delivared', '2024-01-11 06:31:48', '2024-01-24 14:10:44', 'marchent', 'Rangpur', 'added_account', 'Khulna', '10', 'Khulna', '9294', '210', '96', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, '2', 'regular', 'home', '01478523695', 'Rahmat Shah', 'Khulna Sadar', 'Khulna', 'Khulna', '9650', 'Delivery Charge Added', '3', NULL, 'delivared', '2024-01-11 06:56:26', '2024-01-24 14:07:14', 'marchent', 'Sylhet', 'payment_request', 'Khulna', '10', 'Khulna', '9384', '170', '96', 'K6YmIehl', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, '2', 'pickdrop', 'home', '01965874523', 'Jui', 'Chittagong', 'Chittagong', 'Chittagong', '920', 'take it Carefully', '2', NULL, 'received', '2024-01-11 06:58:06', '2024-01-24 14:13:55', 'marchent', 'Sylhet', 'pending', 'Warehouse', NULL, NULL, NULL, '150', '9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, '2', 'express', 'home', '01547859652', 'Sabbir', 'Chandpur, Khulna', 'Khulna', 'Khulna', '25500', NULL, '1', NULL, 'delivared', '2024-01-11 06:58:58', '2024-01-24 14:07:14', 'marchent', 'Sylhet', 'payment_request', 'Khulna', '12', 'Khulna', '25115', '130', '255', 'K6YmIehl', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '2', 'pickdrop', 'point', '0154785968', 'Shihab Ahmed', 'keraniganj Dhaka', 'Dhaka', 'Dhaka', '1350', 'Delivery Charge Added', '1.5', NULL, 'sending', '2024-01-11 07:00:11', '2024-01-24 14:15:21', 'marchent', 'Sylhet', 'pending', 'Chittagong', NULL, NULL, NULL, '150', '13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, '2', 'regular', 'home', '01659555548', 'Misqat', 'Paglapir Rangpur', 'Rangpur', 'Rangpur Sadar', '640', 'Delivery Charge Added', '3', NULL, 'pending', '2024-01-11 07:05:20', '2024-01-24 14:15:59', 'marchent', 'Sylhet', 'pending', NULL, NULL, NULL, NULL, '170', '6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, '3', 'express', 'point', '015487521548', 'Shakib', 'Paglapir Rangpur', 'Rangpur', 'Rangpur Sadar', '320', 'Delivery Charge Added', '1', NULL, 'sending', '2024-01-11 08:51:59', '2024-01-24 14:16:30', 'marchent', 'Khulna', 'pending', 'Warehouse', NULL, NULL, NULL, '130', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, '3', 'regular', 'home', '01987456254', 'Rakib', 'Chittagong', 'Chittagong', 'Chittagong', '920', 'Delivery Charge Added', '3', NULL, 'pending', '2024-01-11 08:53:35', '2024-01-24 14:16:45', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, '170', '9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, '3', 'regular', 'home', '01362541548', 'Shofiqul', 'Sunamganj, Sylhet', 'Sylhet', 'Sylhet Sadar', '690', 'Delivery Charge Added', '2', NULL, 'pending', '2024-01-11 08:55:33', '2024-01-24 14:17:18', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, '150', '6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '3', 'regular', 'home', '018452145875', 'Keramot', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet Sadar', '720', 'Delivery Charge Added', '3', NULL, 'pending', '2024-01-11 08:56:50', '2024-01-24 14:17:35', 'marchent', 'Khulna', 'pending', NULL, NULL, NULL, NULL, '170', '7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, '1', 'regular', 'home', '01548754125', 'rocky', 'kustia', 'Kustia', 'Kustia Sadar', '900', 'COD charge Added', '6', NULL, 'pending', '2024-01-13 05:32:08', '2024-01-24 13:48:28', 'manager', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, '230', '9', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, '1', 'regular', 'home', '016655555151', 'Tufan', 'Purana Paltan', 'Dhaka', 'Dhaka Sadar', '640', NULL, '5', NULL, 'delivared', '2024-01-13 05:36:17', '2024-01-15 06:35:15', 'manager', 'Rangpur', 'payment_request', 'Dhaka', '13', 'Dhaka', '424', '210', '6', 'hW7LG2sB', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, '1', 'regular', 'home', '01659554555', 'Kuddus Ahmed', 'Khulna Sadar', 'Khulna', 'Khulna', '0', NULL, '3', NULL, 'delivared', '2024-01-21 04:27:15', '2024-01-21 14:30:23', 'manager', 'Rangpur', 'paid', 'Khulna', '10', 'Khulna', '0', '170', '0', 'A0cSToGs', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(19, '1', 'add_payment', 'add_payment', '01767295333', 'add_payment', 'Paglapir Rangpur', 'Rangpur', 'Rangpur Sadar', '950', NULL, NULL, NULL, 'delivared', '2024-01-24 04:37:50', '2024-01-24 13:45:33', 'marchent', 'Rangpur', 'payment_request', NULL, '14', NULL, '950', '0', '0', 'w7efOkng', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(20, '1', 'regular', 'home', '01542154215', 'Ekram', 'Narayanganj Dhaka', 'Dhaka', 'Narayanganj', '960', NULL, '5', NULL, 'delivared', '2024-01-24 09:41:59', '2024-01-24 13:54:38', 'marchent', 'Rangpur', 'payment_request', 'Dhaka', '13', 'Dhaka', '741', '210', '9', 'SjaEaRxn', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, '1', 'regular', 'home', '01548754125', 'Rifatullah', 'Sylhet, sunamganj', 'Sylhet', 'Sunamganj', '190', NULL, '2', NULL, 'pending', '2024-01-24 10:06:42', '2024-01-24 10:06:42', 'marchent', 'Rangpur', 'pending', NULL, NULL, NULL, NULL, '150', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '2', 'add_payment', 'add_payment', '01580452569', 'add_payment', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet sadar', '600', NULL, NULL, NULL, 'delivared', '2024-01-24 13:25:22', '2024-01-24 14:07:14', 'marchent', 'Sylhet', 'payment_request', NULL, '14', NULL, '600', '0', '0', 'K6YmIehl', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, '2', 'add_payment', 'add_payment', '01580452569', 'add_payment', 'Sylhet, Sunamganj', 'Sylhet', 'Sylhet sadar', '320', NULL, NULL, NULL, 'delivared', '2024-01-24 13:40:05', '2024-01-24 14:07:14', 'marchent', 'Sylhet', 'payment_request', NULL, '14', NULL, '320', '0', '0', 'K6YmIehl', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(24, '1', 'regular', 'home', '01254874542', 'Habib', 'Sylhet', 'Sylhet', 'Sylhet', '000', NULL, '2', NULL, 'delivared', '2024-01-24 13:53:35', '2024-01-24 13:57:27', 'marchent', 'Rangpur', 'added_account', 'Sylhet', '9', 'Sylhet', '0', '150', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -422,7 +475,8 @@ INSERT INTO `riders` (`id`, `name`, `email`, `email_verified_at`, `password`, `b
 (10, 'Kader Hasan', 'kader@gmail.com', NULL, '$2y$10$V8lUDuo0i6ew3vn9DQWPIeF/DGXnGA28d8xZckKYktSrjPniVGyeu', 'Khulna', '01478523695', NULL, '2024-01-11 08:37:17', '2024-01-11 08:37:17'),
 (11, 'Kuddus Ahmed', 'kuddus@gmail.com', NULL, '$2y$10$xC748ksF2P9uW4a4No7omeenHpr3rKMrJbK3zaQONO1V/lRkCwMSW', 'Khulna', '01659554555', NULL, '2024-01-11 08:37:47', '2024-01-11 08:37:47'),
 (12, 'Keramot Hasan', 'keramot@gmail.com', NULL, '$2y$10$Imdw2.8oUhGIGoqmMdPqxONhgfyFQwQc5XMGy5CuxfCxtPYr0n8Re', 'Khulna', '01958475425', NULL, '2024-01-11 08:38:31', '2024-01-11 08:38:31'),
-(13, 'Rashid Khan', 'rashid@gmail.com', NULL, '$2y$10$jmRBMaN1zSE2L7.gnJLqyOyc5VkNbBen1upkiUQmBn6t8LmrHo5He', 'Dhaka', '01654875412', NULL, '2024-01-13 05:48:07', '2024-01-13 05:48:07');
+(13, 'Rashid Khan', 'rashid@gmail.com', NULL, '$2y$10$jmRBMaN1zSE2L7.gnJLqyOyc5VkNbBen1upkiUQmBn6t8LmrHo5He', 'Dhaka', '01654875412', NULL, '2024-01-13 05:48:07', '2024-01-13 05:48:07'),
+(14, 'Public', 'public@gmail.com', NULL, '$2y$10$YMBkfMa43fTCgcL2gqY6YuZKZBI8L3w0SfaWsV1oQiUQQo93Lntc2', 'Rangpur', '01548754124', NULL, '2024-01-24 04:01:27', '2024-01-24 04:01:27');
 
 -- --------------------------------------------------------
 
@@ -500,7 +554,82 @@ INSERT INTO `trakings` (`id`, `user_id`, `parcel_id`, `description`, `creat_by`,
 (52, '1', '3', 'Rider Name Shihab Ahmed Contact 015489632555 Rider Assigned by Shah Ali', 'Sylhet Hub Manager ', '2024-01-15 06:26:42', '2024-01-15 06:26:42', 'Rider Assigned'),
 (53, '1', '3', 'Parcel Delivery Done By Rider Shihab Ahmed Contact 015489632555', 'Rider Shihab Ahmed', '2024-01-15 06:27:25', '2024-01-15 06:27:25', 'Delivared'),
 (54, '1', '2', 'Parcel Cod Added Marchent Account. Account added Balance is 614 and Delivery charge is 280 and COD 1 % is 9', 'Added By Admin', '2024-01-15 06:32:17', '2024-01-15 06:32:17', 'Balance Added'),
-(55, '1', '3', 'Parcel Cod Added Marchent Account. Account added Balance is 373 and Delivery charge is 230 and COD 1 % is 6', 'Added By Admin', '2024-01-15 06:34:25', '2024-01-15 06:34:25', 'Balance Added');
+(55, '1', '3', 'Parcel Cod Added Marchent Account. Account added Balance is 373 and Delivery charge is 230 and COD 1 % is 6', 'Added By Admin', '2024-01-15 06:34:25', '2024-01-15 06:34:25', 'Balance Added'),
+(56, '1', '3', 'nothing', 'Rangpur Hub Manager', '2024-01-16 16:00:17', '2024-01-16 16:00:17', 'pending'),
+(57, '1', '17', ' Parcel Entry By ', 'Rangpur Hub Manager', '2024-01-21 04:27:15', '2024-01-21 04:27:15', 'pending'),
+(58, '1', '17', 'Parcel Approve By Mr. Rokon Hasan', 'Rangpur Hub Manager', '2024-01-21 04:45:44', '2024-01-21 04:45:44', 'Approved'),
+(59, '1', '17', 'Parcel Was send From Rangpur To Khulna', 'Rangpur Hub Manager ', '2024-01-21 04:45:59', '2024-01-21 04:45:59', 'sending'),
+(60, '1', '17', 'Parcel Was received', 'Khulna Hub Manager ', '2024-01-21 04:46:48', '2024-01-21 04:46:48', 'received'),
+(61, '1', '17', 'Rider Name Kader Hasan Contact 01478523695 Rider Assigned by Khokon', 'Khulna Hub Manager ', '2024-01-21 04:47:15', '2024-01-21 04:47:15', 'Rider Assigned'),
+(62, '1', '17', 'Parcel Delivery Done By Rider Kader Hasan Contact 01478523695', 'Rider Kader Hasan', '2024-01-21 05:26:22', '2024-01-21 05:26:22', 'Delivared'),
+(63, '1', '5', 'Parcel Approve By Mr. Rokon Hasan', 'Rangpur Hub Manager', '2024-01-21 13:08:58', '2024-01-21 13:08:58', 'Approved'),
+(64, '1', '5', 'Parcel Was send From Rangpur To Warehouse', 'Rangpur Hub Manager ', '2024-01-21 13:09:11', '2024-01-21 13:09:11', 'sending'),
+(65, '1', '5', 'Parcel Was received', 'Warehouse Hub Manager ', '2024-01-21 13:09:35', '2024-01-21 13:09:35', 'received'),
+(66, '2', '8', 'Parcel Was send From Warehouse To Khulna', 'Warehouse Hub Manager ', '2024-01-21 13:09:51', '2024-01-21 13:09:51', 'sending'),
+(67, '2', '8', 'Parcel Was received', 'Khulna Hub Manager ', '2024-01-21 13:10:27', '2024-01-21 13:10:27', 'received'),
+(68, '2', '8', 'Rider Name Keramot Hasan Contact 01958475425 Rider Assigned by Khokon', 'Khulna Hub Manager ', '2024-01-21 13:10:48', '2024-01-21 13:10:48', 'Rider Assigned'),
+(69, '2', '8', 'Parcel Delivery Done By Rider Keramot Hasan Contact 01958475425', 'Rider Keramot Hasan', '2024-01-21 13:11:15', '2024-01-21 13:11:15', 'Delivared'),
+(70, '1', '17', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 170 and COD 1 % is 0', 'Added By Admin', '2024-01-21 13:57:36', '2024-01-21 13:57:36', 'Balance Added'),
+(71, '1', '17', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 170 and COD 1 % is 0', 'Added By Admin', '2024-01-21 14:01:21', '2024-01-21 14:01:21', 'Balance Added'),
+(72, '1', '17', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 170 and COD 1 % is 0', 'Added By Admin', '2024-01-21 14:24:00', '2024-01-21 14:24:00', 'Balance Added'),
+(73, '1', '17', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 170 and COD 1 % is 0As COD of the parcel is 0, the delivery charge has been deducted from the original balance ', 'Added By Admin', '2024-01-21 14:26:30', '2024-01-21 14:26:30', 'Balance Added'),
+(74, '1', '17', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 170 and COD 1 % is 0', 'Added By Admin', '2024-01-21 14:26:30', '2024-01-21 14:26:30', 'Balance Added'),
+(75, '2', '8', 'Parcel Cod Added Marchent Account. Account added Balance is 25115 and Delivery charge is 130 and COD 1 % is 255', 'Added By Admin', '2024-01-21 14:41:24', '2024-01-21 14:41:24', 'Balance Added'),
+(76, '1', '20', 'Parcel Inserted By Marchent', 'Marchent', '2024-01-24 09:41:59', '2024-01-24 09:41:59', 'pending'),
+(77, '1', '21', 'Parcel Inserted By Marchent', 'Marchent', '2024-01-24 10:06:42', '2024-01-24 10:06:42', 'pending'),
+(78, '1', '4', 'Parcel Approve By Mr. Rokon Hasan', 'Rangpur Hub Manager', '2024-01-24 10:28:12', '2024-01-24 10:28:12', 'Approved'),
+(79, '1', '5', 'COD Change', 'Rangpur Hub Manager', '2024-01-24 11:45:04', '2024-01-24 11:45:04', 'pending'),
+(80, '1', '4', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 12:50:15', '2024-01-24 12:50:15', 'pending'),
+(81, '2', '6', '170', 'Rangpur Hub Manager', '2024-01-24 12:51:10', '2024-01-24 12:51:10', 'pending'),
+(82, '2', '6', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 12:51:31', '2024-01-24 12:51:31', 'pending'),
+(83, '2', '7', 'Parcel Was send From Sylhet To Rangpur', 'Sylhet Hub Manager ', '2024-01-24 13:03:49', '2024-01-24 13:03:49', 'sending'),
+(84, '2', '6', 'Parcel Was send From Sylhet To Warehouse', 'Sylhet Hub Manager ', '2024-01-24 13:04:27', '2024-01-24 13:04:27', 'sending'),
+(85, '2', '7', 'Parcel Was received', 'Rangpur Hub Manager ', '2024-01-24 13:07:13', '2024-01-24 13:07:13', 'received'),
+(86, '2', '7', 'Parcel Was send From Rangpur To Warehouse', 'Rangpur Hub Manager ', '2024-01-24 13:07:23', '2024-01-24 13:07:23', 'sending'),
+(87, '1', '20', 'Parcel Approve By Mr. Rokon Hasan', 'Rangpur Hub Manager', '2024-01-24 13:07:31', '2024-01-24 13:07:31', 'Approved'),
+(88, '1', '20', 'Parcel Was send From Rangpur To Warehouse', 'Rangpur Hub Manager ', '2024-01-24 13:07:42', '2024-01-24 13:07:42', 'sending'),
+(89, '2', '6', 'Parcel Was received', 'Warehouse Hub Manager ', '2024-01-24 13:07:59', '2024-01-24 13:07:59', 'received'),
+(90, '2', '7', 'Parcel Was received', 'Warehouse Hub Manager ', '2024-01-24 13:07:59', '2024-01-24 13:07:59', 'received'),
+(91, '2', '6', 'Parcel Was send From Warehouse To Khulna', 'Warehouse Hub Manager ', '2024-01-24 13:08:16', '2024-01-24 13:08:16', 'sending'),
+(92, '2', '6', 'Parcel Was received', 'Khulna Hub Manager ', '2024-01-24 13:08:37', '2024-01-24 13:08:37', 'received'),
+(93, '3', '11', 'Parcel Approve By Mr. Khokon', 'Khulna Hub Manager', '2024-01-24 13:08:49', '2024-01-24 13:08:49', 'Approved'),
+(94, '3', '11', 'Parcel Was send From Khulna To Warehouse', 'Khulna Hub Manager ', '2024-01-24 13:09:02', '2024-01-24 13:09:02', 'sending'),
+(95, '2', '6', 'Rider Name Kader Hasan Contact 01478523695 Rider Assigned by Khokon', 'Khulna Hub Manager ', '2024-01-24 13:09:16', '2024-01-24 13:09:16', 'Rider Assigned'),
+(96, '2', '6', 'Parcel Delivery Done By Rider Kader Hasan Contact 01478523695', 'Rider Kader Hasan', '2024-01-24 13:09:40', '2024-01-24 13:09:40', 'Delivared'),
+(97, '2', '6', 'Parcel Cod Added Marchent Account. Account added Balance is 9384 and Delivery charge is 170 and COD 1 % is 96', 'Added By Admin', '2024-01-24 13:10:03', '2024-01-24 13:10:03', 'Balance Added'),
+(98, '2', '22', 'Send A payment Request', 'Marchent', '2024-01-24 13:25:22', '2024-01-24 13:25:22', 'added_account'),
+(99, '2', '23', 'Send A payment Request.Payment request is pending.', 'Marchent', '2024-01-24 13:40:05', '2024-01-24 13:40:05', 'added_account'),
+(100, '2', '23', 'This payment is added marchent account', 'Approve By Admin', '2024-01-24 13:43:14', '2024-01-24 13:43:14', 'added_account'),
+(101, '1', '5', 'Delivery Charge Added', 'Khulna Hub Manager', '2024-01-24 13:47:36', '2024-01-24 13:47:36', 'pending'),
+(102, '1', '15', 'COD charge Added', 'Khulna Hub Manager', '2024-01-24 13:48:28', '2024-01-24 13:48:28', 'pending'),
+(103, '1', '20', 'Parcel Was received', 'Warehouse Hub Manager ', '2024-01-24 13:50:52', '2024-01-24 13:50:52', 'received'),
+(104, '1', '20', 'Parcel Was send From Warehouse To Dhaka', 'Warehouse Hub Manager ', '2024-01-24 13:51:06', '2024-01-24 13:51:06', 'sending'),
+(105, '1', '20', 'Parcel Was received', 'Dhaka Hub Manager ', '2024-01-24 13:51:26', '2024-01-24 13:51:26', 'received'),
+(106, '1', '20', 'Rider Name Rashid Khan Contact 01654875412 Rider Assigned by Masud Rana', 'Dhaka Hub Manager ', '2024-01-24 13:51:38', '2024-01-24 13:51:38', 'Rider Assigned'),
+(107, '1', '20', 'Parcel Delivery Done By Rider Rashid Khan Contact 01654875412', 'Rider Rashid Khan', '2024-01-24 13:52:07', '2024-01-24 13:52:07', 'Delivared'),
+(108, '1', '20', 'Parcel Cod Added Marchent Account. Account added Balance is 741 and Delivery charge is 210 and COD 1 % is 9', 'Added By Admin', '2024-01-24 13:52:33', '2024-01-24 13:52:33', 'Balance Added'),
+(109, '1', '24', 'Parcel Inserted By Marchent', 'Marchent', '2024-01-24 13:53:35', '2024-01-24 13:53:35', 'pending'),
+(110, '1', '24', 'Parcel Approve By Mr. Rokon Hasan', 'Rangpur Hub Manager', '2024-01-24 13:54:03', '2024-01-24 13:54:03', 'Approved'),
+(111, '1', '24', 'Parcel Was send From Rangpur To Warehouse', 'Rangpur Hub Manager ', '2024-01-24 13:55:07', '2024-01-24 13:55:07', 'sending'),
+(112, '1', '24', 'Parcel Was received', 'Warehouse Hub Manager ', '2024-01-24 13:55:36', '2024-01-24 13:55:36', 'received'),
+(113, '1', '24', 'Parcel Was send From Warehouse To Sylhet', 'Warehouse Hub Manager ', '2024-01-24 13:55:57', '2024-01-24 13:55:57', 'sending'),
+(114, '1', '24', 'Parcel Was received', 'Sylhet Hub Manager ', '2024-01-24 13:56:31', '2024-01-24 13:56:31', 'received'),
+(115, '1', '24', 'Rider Name Shovon Contact 01458693625 Rider Assigned by Shah Ali', 'Sylhet Hub Manager ', '2024-01-24 13:56:48', '2024-01-24 13:56:48', 'Rider Assigned'),
+(116, '1', '24', 'Parcel Delivery Done By Rider Shovon Contact 01458693625', 'Rider Shovon', '2024-01-24 13:57:14', '2024-01-24 13:57:14', 'Delivared'),
+(117, '1', '24', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 150 and COD 1 % is 0As COD of the parcel is 0, the delivery charge has been deducted from the original balance ', 'Added By Admin', '2024-01-24 13:57:27', '2024-01-24 13:57:27', 'Balance Added'),
+(118, '1', '24', 'Parcel Cod Added Marchent Account. Account added Balance is 0 and Delivery charge is 150 and COD 1 % is 0', 'Added By Admin', '2024-01-24 13:57:27', '2024-01-24 13:57:27', 'Balance Added'),
+(119, '1', '5', 'Parcel Was send From Warehouse To Khulna', 'Warehouse Hub Manager ', '2024-01-24 14:09:18', '2024-01-24 14:09:18', 'sending'),
+(120, '1', '5', 'Parcel Was received', 'Khulna Hub Manager ', '2024-01-24 14:09:52', '2024-01-24 14:09:52', 'received'),
+(121, '1', '5', 'Rider Name Kader Hasan Contact 01478523695 Rider Assigned by Khokon', 'Khulna Hub Manager ', '2024-01-24 14:10:17', '2024-01-24 14:10:17', 'Rider Assigned'),
+(122, '1', '5', 'Parcel Delivery Done By Rider Kader Hasan Contact 01478523695', 'Rider Kader Hasan', '2024-01-24 14:10:35', '2024-01-24 14:10:35', 'Delivared'),
+(123, '1', '5', 'Parcel Cod Added Marchent Account. Account added Balance is 9294 and Delivery charge is 210 and COD 1 % is 96', 'Added By Admin', '2024-01-24 14:10:44', '2024-01-24 14:10:44', 'Balance Added'),
+(124, '2', '7', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:13:55', '2024-01-24 14:13:55', 'pending'),
+(125, '2', '9', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:15:21', '2024-01-24 14:15:21', 'pending'),
+(126, '2', '10', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:15:59', '2024-01-24 14:15:59', 'pending'),
+(127, '3', '11', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:16:30', '2024-01-24 14:16:30', 'pending'),
+(128, '3', '12', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:16:45', '2024-01-24 14:16:45', 'pending'),
+(129, '3', '13', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:17:18', '2024-01-24 14:17:18', 'pending'),
+(130, '3', '14', 'Delivery Charge Added', 'Rangpur Hub Manager', '2024-01-24 14:17:35', '2024-01-24 14:17:35', 'pending');
 
 -- --------------------------------------------------------
 
@@ -527,7 +656,11 @@ CREATE TABLE `transactions` (
 
 INSERT INTO `transactions` (`id`, `user_id`, `current_balance`, `pay_method`, `account_name`, `account_no`, `tnx_id`, `created_at`, `updated_at`, `status`) VALUES
 (1, '1', '424', 'Mobile Bangking', 'Bkash', '01765986256', 'epcp5RKm', '2024-01-11 04:48:36', '2024-01-11 04:49:26', 'paid'),
-(2, '1', '1411', 'Mobile Bangking', 'Bkash', '01548765211', 'hW7LG2sB', '2024-01-15 06:35:15', '2024-01-15 06:35:15', 'pending');
+(2, '1', '1411', 'Mobile Bangking', 'Bkash', '01548765211', 'hW7LG2sB', '2024-01-15 06:35:15', '2024-01-15 06:35:15', 'pending'),
+(3, '1', '930', 'Mobile Bangking', 'Nagad', '01548758965', 'A0cSToGs', '2024-01-21 14:29:41', '2024-01-21 14:30:23', 'paid'),
+(4, '1', '950', 'Mobile Bangking', 'Bkash', '01548754215', 'w7efOkng', '2024-01-24 13:45:33', '2024-01-24 13:45:33', 'pending'),
+(5, '1', '741', 'Mobile Bangking', 'Bkash', '01548754215', 'SjaEaRxn', '2024-01-24 13:54:38', '2024-01-24 13:54:38', 'pending'),
+(6, '2', '35419', 'Bkash', 'Bkash', '01580452569', 'K6YmIehl', '2024-01-24 14:07:14', '2024-01-24 14:07:14', 'pending');
 
 -- --------------------------------------------------------
 
@@ -553,11 +686,19 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Md Sajjad Hossan', 'sajjadhossan608@gmail.com', NULL, '$2y$10$8f6dWcxmoRPdjK.lDYBOl.JHYcpBal270iAlVriHcqtaPk.FuXoRW', NULL, '2024-01-11 03:10:22', '2024-01-11 03:10:22'),
 (2, 'Back Bencher', 'bbencher616@gmail.com', NULL, '$2y$10$qbAytOd.hicvvJ8HnYIRUuIcQQE8qpFWhc2t5yNlQ77K2pV/DlKPO', NULL, '2024-01-11 06:46:06', '2024-01-11 06:46:06'),
-(3, 'Rifat Hasan', 'rifat@gmail.com', NULL, '$2y$10$CalqCJV7wdTX94jjnxc73O8GiqRPOQMm4LTBbSlMsUTvMbkbBbKDm', NULL, '2024-01-11 08:31:58', '2024-01-11 08:31:58');
+(3, 'Rifat Hasan', 'rifat@gmail.com', NULL, '$2y$10$CalqCJV7wdTX94jjnxc73O8GiqRPOQMm4LTBbSlMsUTvMbkbBbKDm', NULL, '2024-01-11 08:31:58', '2024-01-11 08:31:58'),
+(4, 'Hasan Masud', 'hasan@gmail.com', NULL, '$2y$10$4RX7pvUgqfA0PGhoeg3h/e.O75x6L5DW4WipEi9bpFLIHlz9M6gg.', NULL, '2024-01-24 11:23:14', '2024-01-24 11:23:14'),
+(5, 'Kuddus Ahmed', 'kuddus@gmail.com', NULL, '$2y$10$g3cNiHrul9bHIUe8NoCcs.DdH89iMsumwzLqFpEauLSkQp5.UE472', NULL, '2024-01-24 11:24:39', '2024-01-24 11:24:39');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `add_balances`
+--
+ALTER TABLE `add_balances`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admins`
@@ -678,6 +819,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `add_balances`
+--
+ALTER TABLE `add_balances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
@@ -711,13 +858,13 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `marchents`
 --
 ALTER TABLE `marchents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `mobilebankings`
@@ -735,7 +882,7 @@ ALTER TABLE `moderators`
 -- AUTO_INCREMENT for table `parcel_infos`
 --
 ALTER TABLE `parcel_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `parcel_users`
@@ -759,25 +906,25 @@ ALTER TABLE `pickups`
 -- AUTO_INCREMENT for table `riders`
 --
 ALTER TABLE `riders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `trakings`
 --
 ALTER TABLE `trakings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

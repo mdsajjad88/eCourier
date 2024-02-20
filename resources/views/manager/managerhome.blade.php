@@ -108,6 +108,22 @@
                         </div>
                         </a>
                     </div>
+                    <div class="col-md-3">
+                    <a href="{{url('allmarchent')}}" class="nav-link">
+                        <div class="card bg-secondary text-light">
+                          
+                            <div class="card-body">
+                                <h5 class="card-title">Our Total Marchent</h5>
+                                @php
+                                $branch = Auth::guard('manager')->user()->branch_name;
+                                $allM = DB::table('marchents')->where('district', $branch)->where('status', 'Marchent')->count();      
+                                             
+                                @endphp
+                                <h6 class="card-subtitle mb-2">{{$allM}} </h6>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
                 </div>
                 
                

@@ -47,20 +47,22 @@
                    @enderror   
                    </td>
                   
-                    @php
-                    $riderid = $parcel->delivery_rider;
-                    $branch = DB::table('riders')->where('id', $riderid)->first();
-                    @endphp
                     <td>
                     <select name="delivery_branch" class="form-control" id="">
-                        <option value="{{$branch->branch}}" selected>{{$branch->branch}}</option>
+                        <option value="{{$parcel->delivared_branch}}" selected>{{$parcel->delivared_branch}}</option>
                     </select>    
                     </td>  
+                    
                     @php 
                     $parcent = $parcel->cod_oneparcent;
                     $charge = $parcel->delivery_charge;
                     $cod = $parcel->cod;
-                    $paiding = $cod -($parcent + $charge)
+                    if($cod > 0){
+                        $paiding = $cod -($parcent + $charge);
+                    }
+                   else{
+                    $paiding = 0;
+                   }
                     @endphp 
                     
                     <td>

@@ -24,7 +24,11 @@
                     <td>{{$parcel->cod}} </td>
                     <td>{{$parcel->name}} </td>
                     <td>{{$parcel->address}} </td>
+                    @if($parcel->status == 'delivared')
+                    <td><p class="btn btn-primary">{{$parcel->status}}  </p></td>
+                    @else
                     <td> <p class="btn btn-success">{{$parcel->status}}  </p> </td>
+                    @endif
                 </tr>
                 @endforeach
             </table>

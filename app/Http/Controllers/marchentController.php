@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\ParcelInfo;
+
 use App\Models\Pickup;
+use App\Models\ParcelInfo;
 use App\Models\Marchent;
-use App\Models\Transaction;
-use DateTime;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Transaction;
+use App\Models\User;
+use DateTime;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Psy\Readline\Transient;
 
@@ -49,15 +53,8 @@ class marchentController extends Controller
             return redirect('setprofile'); 
         }
     }
-    public function addnote(){
-        return view('marchent.parcelNote');
-    }
-    public function noteaction(Request $request){
-        $request->validate([
-            'parcelid'=>'required',
-        ]);
-        
-    }
+   
+   
     public function waitingappr(){
         $user = auth()->user()->id;
         $approvalpercel = ParcelInfo::where('user_id', $user)->where('cod_status', 'approval_pending')->paginate(2);
@@ -76,7 +73,7 @@ class marchentController extends Controller
     }
     public function allparceldetails(){
         $user = auth()->user()->id;
-        $allparcel = ParcelInfo::where('user_id', $user)->paginate(4);
+        $allparcel = ParcelInfo::where('user_id', $user)->orderBy('id', 'desc')->paginate(4);
         return view('marchent.allparceldetails', compact('allparcel'));
     }
     public function transactioninfo(){
@@ -115,6 +112,16 @@ class marchentController extends Controller
         Session::flash('success', 'Details Updated Successfully');
         return redirect()->back(); 
 
+    }
+    public function allpendingParcel(){
+        $user = Auth::user()->id;
+        $allpending = DB::table("parcel_infos")->where('user_id', $user)->where('cod_status', 'pending')->get();
+        return view('marchent.allpendingParcel', compact('allpending'));
+    }
+    public function delivaredParcel(){
+        $user = Auth::user()->id;
+        $alldelivery = DB::table('parcel_infos')->where('user_id', $user)->where('status', 'delivared')->get();
+        return view('marchent.delivaredParcel', compact('alldelivery'));   
     }
    
 }

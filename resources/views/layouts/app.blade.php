@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
-            <a class="navbar-brand" href="{{url('/')}}">
+                <a class="navbar-brand" href="{{url('/')}}">
 							  	<!-- <img src="{{url('frontend/img/lgoo.jpeg')}}" height="40px" alt=""> -->
 								<h3><u>E-Coureer </u> </h3>
 							  </a>
@@ -99,7 +99,4 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
-   
-</body>
-</html>
+@include('layouts.footer')

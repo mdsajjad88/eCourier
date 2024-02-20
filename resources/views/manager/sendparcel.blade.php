@@ -23,7 +23,7 @@
                                         <td> <input class="form-control" type="text" name="address" value="{{$parcel->address}}"> </td>
                                         <td>
                                             <select name="bname" id="" class="form-control">
-                                                <option value="">Select Send Branch</option>
+                                                <option>Select Send Branch</option>
                                             @php 
                                             $branch = DB::table('branches')->get();
                                             @endphp
@@ -32,7 +32,7 @@
                                             @endforeach
                                             </select>
                                             @error('bname')
-                                            <p class="alert alert-dangr">{{$message}}</p>
+                                            <p class="alert alert-danger">{{$message}}</p>
                                             @enderror
                                         </td>
                                         <td> <input class="btn btn-success" type="submit" value="Send"></td>

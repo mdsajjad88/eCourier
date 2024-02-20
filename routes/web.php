@@ -13,6 +13,7 @@ use App\Http\Controllers\MobilebankingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RiderController;
+use App\Http\Controllers\AddBalanceController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -57,8 +58,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('addressadd', [MobilebankingController::class, 'addressadd']);
     Route::post('adbkash', [MobilebankingController::class, 'adbkash']);
     Route::post('adcardno', [MobilebankingController::class, 'adcardno']);
-    Route::get('addnote', [marchentController::class, 'addnote']);
-    Route::post('noteaction', [marchentController::class, 'noteaction']);
+
+   
     Route::get('waitingappr', [marchentController::class, 'waitingappr']);
     Route::get('balancedetails', [marchentController::class, 'balancedetails']);
     Route::get('allparceldetails', [marchentController::class, 'allparceldetails']);
@@ -69,7 +70,12 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('pendingtk', [marchentController::class, 'pendingtk']);
     Route::get('editprofile', [marchentController::class, 'editprofile']);
     Route::post('editproaction', [marchentController::class, 'editproaction']);
+    Route::get('pending/parcel', [marchentController::class, 'allpendingParcel']);
+    Route::get('delivared/parcel', [marchentController::class, 'delivaredParcel']);
 
+    Route::get('addBalance', [AddBalanceController::class, 'addBalance']);
+    Route::post('addBalance/action', [AddBalanceController::class, 'BalanceAdd']);
+    Route::get('addBalDetails',[AddBalanceController::class, 'addBalDetails']);
 
 });
 
@@ -82,6 +88,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('showmanager', [AdminController::class, 'showmanager']);
     Route::post('addmanager', [AdminController::class, 'addmanager']);
     Route::get('newbranch', [AdminController::class, 'newbranch']);
+    Route::get('company/allmarchent', [AdminController::class, 'CallMarchent']);
 
     Route::post('addbranch', [AdminController::class, 'addbranch']);
     Route::get('showmodaretor', [AdminController::class, 'showmodaretor']);
@@ -98,6 +105,8 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('mcheck/{id}',[AdminController::class, 'mcheck']);
     Route::get('pendingByAdmin',[AdminController::class, 'pendingByAdmin']);
     Route::get('alldelivery',[AdminController::class, 'alldelivery']);
+    Route::get('balance/add/request',[AddBalanceController::class, 'allAddRequ']);
+    Route::get('add/balance/approved/{id}',[AddBalanceController::class, 'addBalApprove']);
     
 
 });
@@ -125,6 +134,7 @@ Route::get('pendingmarchent', [ManagerController::class, 'pendingmarchent']);
 Route::get('marchent/delete/{id}', [ManagerController::class, 'mdelete']);
 Route::get('marchent/accept/{id}', [ManagerController::class, 'maccept']);
 Route::get('ourdelivery', [ManagerController::class, 'ourdelivery']);
+Route::get('allmarchent', [ManagerController::class, 'allmarchent']);
 
 Route::get('parceldelete/{id}', [ParcelController::class, 'parceldelete']);
 Route::get('parcelapprove/{id}', [ParcelController::class, 'parcelapprove']);

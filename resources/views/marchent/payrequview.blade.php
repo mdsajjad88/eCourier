@@ -12,6 +12,9 @@
     @if(Session::has('success'))
     <p class="alert alert-success" >{{Session::get('success')}}</p>
     @endif
+    @if(Session::has('error'))
+    <p class="alert alert-danger" >{{Session::get('error')}}</p>
+    @endif
     <div class="row">
         <div class="col">
             <form action="{{url('payment/request/send')}}" method="post">

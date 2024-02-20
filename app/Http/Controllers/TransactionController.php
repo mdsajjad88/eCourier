@@ -26,6 +26,13 @@ class TransactionController extends Controller
             'account_no'=>'required',
             
         ]);
+        if($request->current_balance < 1){
+            Session::flash('error', 'Balance not Available');
+            return redirect()->back();    
+        }
+        else{
+
+       
         $user = Auth::user();
         $uid = Auth::user()->id;
         $tnxid = Str::random(8);
@@ -54,7 +61,7 @@ class TransactionController extends Controller
         });
        Session::flash('success', 'Payment Request Send Successfully');
        return redirect()->back();
-
+    }
     }
     public function showpayriqu(){
         $allrequ = Transaction::where('status', 'pending')->get();

@@ -135,19 +135,34 @@ class AdminController extends Controller
             'delivery_charge'=>'required',
             'cod_oneparcent'=>'required',
         ]);
+        
         $id = $request->parcel_id;
         $addbalance = ParcelInfo::find($id);
         $addbalance->cod_status = 'added_account';
         $addbalance->cod = $request->cod;
+       
         $addbalance->weight = $request->weight;
+        
         $addbalance->paid_cod = $request->paid_cod;
         $addbalance->delivery_charge = $request->delivery_charge;
         $addbalance->cod_oneparcent = $request->cod_oneparcent;
         $addbalance->save();
-  
+        
         $user_id = $addbalance->user_id;
         $pid = $addbalance->id;
-
+        $rcod = $addbalance->paid_cod;
+        if($rcod == 0){
+            $marchent = Marchent::where('user_id', $user_id)->first();
+            $marchent->current_balance = $marchent->current_balance - $request->delivery_charge;
+            $marchent->save();
+            $track = new Traking();
+            $track->user_id = $user_id;
+            $track->parcel_id = $pid;
+            $track->description = "Parcel Cod Added Marchent Account. Account added Balance is ".$request->paid_cod.' and Delivery charge is '.$request->delivery_charge.' and COD 1 % is '.$request->cod_oneparcent.'As COD of the parcel is 0, the delivery charge has been deducted from the original balance ';
+            $track->creat_by = 'Added By Admin';
+            $track->status = 'Balance Added';
+            $track->save(); 
+        }
         $track = new Traking();
         $track->user_id = $user_id;
         $track->parcel_id = $pid;
@@ -186,11 +201,13 @@ class AdminController extends Controller
     }
    
     public function mcheck($id){
-        $marchent = Marchent::where('user_id', $id)->first();
         $user = User::where('id', $id)->first();
         $ucount = $user->count();
+       
+     
+       
         if($ucount > 0){
-
+            $marchent = Marchent::where('user_id', $id)->first();
       
         $result = '<table class="table table-striped">
             
@@ -233,6 +250,16 @@ class AdminController extends Controller
                         <td> '.$marchent->division.'</td>
                        
                 </tr>
+                <tr>        
+                <th> Status</th>
+                        <td> '.$marchent->status.'</td>
+                       
+                </tr>
+                <tr>        
+                <th> Current Balance</th>
+                        <td> '.$marchent->current_balance.'</td>
+                       
+                </tr>
             
                 </table>' ;
                 return response()->json(['right'=>$result]);
@@ -250,5 +277,9 @@ class AdminController extends Controller
     public function alldelivery(){
         $delivered = ParcelInfo::where('status', 'delivared')->paginate(3);
         return view('admin.alldelivery', compact('delivered'));
+    }
+    public function CallMarchent(){
+        $myMarchents = Marchent::all();
+        return view('admin.CallMarchent', compact('myMarchents'));
     }
 }

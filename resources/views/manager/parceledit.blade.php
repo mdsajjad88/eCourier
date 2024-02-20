@@ -127,6 +127,24 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>
+                        <label>Delivery Charge</label>
+                   
+                        </th>
+                        <td>
+                        <input type="text"  name="delivery_charge" class="form-control" value="{{$parcelsearch->delivery_charge}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                        <label>COD 1% Charge</label>
+                   
+                        </th>
+                        <td>
+                        <input type="text"  name="cod_oneparcent" class="form-control" value="{{$parcelsearch->cod_oneparcent}}">
+                        </td>
+                    </tr>
+                    <tr>
                         <th> <label>Parcel Note</label>
                     </th>
                     <td>

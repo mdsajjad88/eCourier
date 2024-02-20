@@ -140,7 +140,7 @@
                 <label for="">Parcel Weight(KG)</label>
                 </div>
                 <div class="col-6">
-                <input type="text" name="weight" class="form-control">
+                <input type="text" name="weight" required class="form-control">
                 </div> 
                 @error('weight')
                 <p class="alert alert-danger">{{ $message }}</p> 

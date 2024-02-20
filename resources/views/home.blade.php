@@ -35,7 +35,7 @@
                     @endif
                     <li class="list-group-item"><a href="{{url('setprofile')}}" class="nav-link">Add Your Information</a></li>
                     <li class="list-group-item"><a href="{{url('addparcel')}}" class="nav-link">Add Parcel</a></li>                   
-                    <li class="list-group-item"><a href="{{url('addnote')}}" class="nav-link">Add Note to Parcel</a></li>
+                    <li class="list-group-item"><a href="{{url('addBalance')}}" class="nav-link">Add Balance </a></li>
                    <li class="list-group-item"> <a href="{{url('payment/request')}}" class="nav-link"> Send Payment Request</a></li>
                    <li class="list-group-item"><a href="{{url('transactioninfo')}}" class="nav-link"> All Transaction</a></li>
                    <li class="list-group-item"><a href="{{url('editprofile')}}" class="nav-link">Edit Profile</a></li>
@@ -57,9 +57,18 @@
                                 <h5 class="card-title">Current Balance</h5>
                                 @php 
                                 $user = Auth::user()->id;
-                                $balance = DB::table('parcel_infos')->where('cod_status', 'added_account')->where('user_id', $user)->sum('paid_cod');
+                                $count = DB::table('marchents')->where('user_id', $user)->count();
+                                @endphp 
+                                @if($count > 0)
+
+                                @php 
+                                $user = Auth::user()->id;
+                                $balance = DB::table('marchents')->where('user_id', $user)->first();
                                 @endphp
-                                <h6 class="card-subtitle mb-2">{{$balance}}</h6>
+                                <h6 class="card-subtitle mb-2">{{$balance->current_balance}}</h6>
+                                @else 
+                                <h6 class="card-subtitle mb-2">000</h6>
+                                @endif
                             </div>
                             </a>
                         </div>
@@ -99,6 +108,51 @@
                             <div class="card-body">
                                 <h5 class="card-title">Total Parcel</h5>
                                 <h6 class="card-subtitle mb-2">{{ $parcel }}</h6>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="card bg-dark text-light">
+                            <a href="{{url('addBalDetails')}}" class="nav-link">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Add Balance</h5>
+                                @php 
+                                $user = Auth::user()->id;
+                                $totalBal  = DB::table('add_balances')->where('user_id', $user)->sum('amount');
+                                @endphp
+                                <h6 class="card-subtitle mb-2">{{$totalBal}}</h6>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-dark text-light">
+                            <a href="{{url('pending/parcel')}}" class="nav-link">
+                            <div class="card-body">
+                                <h5 class="card-title">Pending Parcel </h5>
+                                @php 
+                                $user = auth()->user()->id;
+                                $allpercel = DB::table('parcel_infos')->where('user_id', $user)->where('cod_status', 'pending')->count();
+                                   
+                                @endphp
+                                <h6 class="card-subtitle mb-2">{{$allpercel}}</h6>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-dark text-light">
+                            <a href="{{url('delivared/parcel')}}" class="nav-link">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Delivared Parcel </h5>
+                                @php 
+                                $user = Auth::user()->id;
+                                $totaldeli   = DB::table('parcel_infos')->where('user_id', $user)->where('status','delivared')->count();
+                                @endphp
+                                <h6 class="card-subtitle mb-2">{{$totaldeli}}</h6>
                             </div>
                             </a>
                         </div>

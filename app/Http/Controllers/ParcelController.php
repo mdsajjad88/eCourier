@@ -79,7 +79,7 @@ elseif($weight > 1){
         $track->description = 'Parcel Inserted By Marchent';
         $track->creat_by = 'Marchent';
         $track->save();
-        Session::flash('success', 'Successfully added Your Parcel');
+        Session::flash('success', 'Successfully added Your Parcel Your Parcel ID is '.$parcel->id);
         return redirect()->back();
     }
         else{
@@ -227,8 +227,17 @@ elseif($weight > 1){
             'parcel_id'=>'required',
         ]);
         $pidd = $request->parcel_id;
-        $parcelsearch = ParcelInfo::where('id', $pidd)->first();
-        return view('manager.parceledit', compact('parcelsearch'));
+       $parcel = ParcelInfo::where('id', $pidd)->count();
+       
+        if($parcel == 0){
+            Session::flash('error', 'This  Parcel Not Available !!');
+            return redirect('editparcel');
+        }
+        else{
+            $parcelsearch = ParcelInfo::where('id', $pidd)->first();
+            return view('manager.parceledit', compact('parcelsearch'));
+        }
+       
     }
     public function newedit(Request $request){
        
@@ -288,8 +297,10 @@ elseif($weight > 1){
         $parcel->district = $request->district;
         $parcel->policestation = $request->policestation;
         $parcel->cod = $request->cod;
+        $parcel->cod_oneparcent = $request->cod_oneparcent;
         $parcel->note = $request->note;
         $parcel->weight = $request->weight;
+        $parcel->delivery_charge = $request->delivery_charge;
         $parcel->exchenge = $request->exchenge;
         $parcel->save(); 
 

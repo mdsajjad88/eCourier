@@ -4,24 +4,21 @@
 
 <div class="container">
     <div class="row">
-    <form action="" method="post">
-      @csrf
+    
         <div class="col-10">    
            
                 <label for="">Enter Marchent ID</label>
             
-            <input type="number" id="marchentID" name="marchentID" class="form-control">
+            <input type="number" placeholder="Input Here Marchent ID" id="marchentID" name="marchentID" class="form-control">
  
         </div>
-        <div class="col-2 mt-2">
-            <input type="submit" id="bttn" class="btn btn-success form-control">
-        </div>
-        </form>
+        
+       
     </div>
     <div class="row mt-3">
         <div class="col">
-        <div id="showResult">
-
+        <div id="showResult" >
+            
         </div>
         </div>
     </div>
@@ -35,6 +32,7 @@
                 type: "GET",
                 success:function(ok){
                   $("#showResult").html(ok.right);
+                 
                 }
             })
         })
